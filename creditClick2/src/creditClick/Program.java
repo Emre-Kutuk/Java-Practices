@@ -30,5 +30,18 @@ public class Program
 		country.GenerateCountry();
 		
 		country.PrintAvgPopulation();
+		
+		System.out.printf("\n\n%s and %s are connected to each other : %b",
+				country.towns.get(0).name,country.towns.get(1).name, 
+				country.CheckIfConnectedDirectly(country.towns.get(0), country.towns.get(1)));
+		
+		System.out.printf("\n\nPrinting neigbours of %s...\n", country.towns.get(5).name);
+		for(Town t : country.FindNeighbours(country.towns.get(5)))
+			System.out.printf("%s ", t.name);
+		
+		
+		System.out.printf("\n\nPrinting neigbours of %s in 20km range...\n", country.towns.get(5).name);
+		for(Town t : country.FindNeighbours(country.towns.get(5), 20))
+			System.out.printf("%s ", t.name);
 	}
 }
