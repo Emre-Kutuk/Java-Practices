@@ -1,0 +1,39 @@
+package creditClick;
+import java.util.*;
+
+public class Program 
+
+{
+	public static void main(String[] args)
+	{
+		Program myprogram = new Program();
+		myprogram.Start();
+	}
+	
+	@SuppressWarnings("resource")
+	void Start()
+	{
+		Scanner s = new Scanner(System.in);
+		
+		System.out.print("Enter a country name: ");
+		String str = s.nextLine();
+		
+		System.out.print("Enter town number (max 20): ");
+		int nr = Integer.parseInt(s.nextLine());
+		
+		Country country = new Country(str, nr);
+		country.generateCountry();
+		
+		country.printAvgPopulation();
+		
+		for(Town t : country.towns)
+		{
+			t.printNeighbours();
+		}
+		
+		System.out.print("Enter a town name to check its neighbours: ");
+		str = s.nextLine();
+		System.out.print("Enter a distance: ");
+		nr = Integer.parseInt(s.nextLine());
+	}
+}

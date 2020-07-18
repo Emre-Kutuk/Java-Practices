@@ -1,0 +1,18 @@
+package creditClick;
+
+public class Path 
+{
+	public Town from;
+	public Town to;
+	public int distance;
+	
+	public Path(Town from, Town to, int distance)
+	{
+		this.from = from;
+		this.to = to;
+		this.distance = distance;
+	}
+	
+	public void override ToString()
+	{}	
+}

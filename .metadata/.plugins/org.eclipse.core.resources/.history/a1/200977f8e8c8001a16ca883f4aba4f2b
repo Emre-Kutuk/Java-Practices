@@ -1,0 +1,112 @@
+package creditClick;
+import java.util.*;
+
+public class Country 
+{
+	public String countryName;
+	public List <Town> towns = new ArrayList<Town>();
+	private List <String> townNames = new ArrayList <String>();
+	private List <Path> paths = new ArrayList <Path>();
+	private int nrOfTowns;
+	
+	public Country(String countryName, int nrOfTowns)
+	{
+		this.countryName = countryName;
+		this.nrOfTowns = nrOfTowns;
+	}
+	
+	public void generateCountry()
+	{
+		System.out.print("Generating " + this.countryName + "...\n");
+		Random rnd = new Random();
+		getTownNames();
+		
+		//Creating towns with random names
+		for(int i = 0; i < nrOfTowns; i++)
+		{
+			int index = rnd.nextInt(townNames.size());
+			towns.add(new Town(townNames.get(index)));
+			townNames.remove(index);
+		}
+		
+		//Printing town names and population
+		towns.forEach(t -> System.out.print(t.toString()));
+		
+		//Creating paths
+		for(Town t : towns)
+		{
+			//Deciding how many paths the town will have
+			int pathNr = rnd.nextInt((4-1) + 1 ) + 1;
+			
+			for(int i = 0; i < pathNr; i++)
+			{
+				int index = rnd.nextInt(towns.size());
+				
+				//Preventing creating a road to itself
+				while(!pathIsValid(index, t))
+					index = rnd.nextInt(towns.size());
+				
+				paths.add(new Path(t, towns.get(index), rnd.nextInt(50-10) + 10));
+				
+			}
+		}
+		System.out.print(paths.size());
+		paths.forEach(p -> System.out.print(p.toString()));
+	}
+	
+	//Getting average population of all towns
+	public void printAvgPopulation()
+	{
+		List <Integer> populationList = new ArrayList<Integer>();
+		
+		towns.forEach(t -> populationList.add(t.population));
+			
+		System.out.print("\nAverage population of " + this.countryName +": " + populationList.stream().mapToInt(Integer::intValue).average() + "\n");
+	}
+	
+	//Checking if the path exists
+	private Boolean pathIsValid(int index, Town t)
+	{
+		if(towns.get(index) != t)
+		{
+			if(paths.size() > 1)
+			{
+				for(Path p : paths)
+				{
+					if(t != p.town2 && towns.get(index) != p.town1)
+						return true;
+				}
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	//Getting hard coded countries
+	private void getTownNames()
+	{
+		townNames.add("Amsterdam");
+		townNames.add("The Hague");
+		townNames.add("Rotterdam");
+		townNames.add("Utrecht");
+		townNames.add("Eindhoven");
+		townNames.add("Maastricht");
+		townNames.add("Haarlem");
+		townNames.add("Leiden");
+		townNames.add("Groningen");
+		townNames.add("Breda");
+		townNames.add("Delft");
+		townNames.add("Lelystad");
+		townNames.add("Enschede");
+		townNames.add("Zwolle");
+		townNames.add("Arnhem");
+		townNames.add("Leeuwarden");
+		townNames.add("Almere");
+		townNames.add("Assen");
+		townNames.add("Zaanstad");
+		townNames.add("Middelburg");
+		townNames.add("Kampen");
+		
+	}
+}
