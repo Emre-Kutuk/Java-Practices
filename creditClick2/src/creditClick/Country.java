@@ -59,32 +59,8 @@ public class Country
 	
 	public Boolean CheckIfAllConnected(Town town)
 	{
-		for(Town t : towns)
-		{
-			if(!CheckIfConnectedDirectly(town, t))
-			{
-				for(Path p : paths)
-				{
-					if(p.town1 == town)
-					{
-						if(!CheckIfConnectedDirectly(town, p.town2))
-						{
-							
-						}
-						
-					}
-					else if(p.town2 == town)
-					{
-						if(!CheckIfConnectedDirectly(town, p.town1))
-						{
-							
-						}
-					}
-				}
-			}
-		}
-		
-		return true;
+	
+		return false;
 	}
 	
 	public void GenerateCountry()

@@ -46,12 +46,26 @@ public class Country
 
 	public void CalculateShortestRoute(Town t1, Town t2)
 	{
+		if(!CheckIfConnectedDirectly(t1,t2))
+		{
+			//Shit happens here
+		}
+		else
+		{
+			//There is a direct route
+		}
 		
+	}
+	
+	public Boolean CheckIfAllConnected(Town town)
+	{
+	
+		return false;
 	}
 	
 	public void GenerateCountry()
 	{
-		System.out.print("Generating " + this.countryName + "...\n");
+		System.out.printf("Generating %s...\n", this.countryName);
 		int pathName = 1;
 		Random rnd = new Random();
 		
@@ -97,6 +111,19 @@ public class Country
 		System.out.printf("\nAverage population of %s: %s",this.countryName,populationList.stream().mapToInt(Integer::intValue).average().toString());
 	}
 	
+	private Boolean CheckIfConnectedDirectly(Town from, Town to)
+	{	
+		for(Path p : paths)
+		{
+			if(p.town1 == from || p.town2 == from 
+					&& p.town1 == to || p.town2 == to)
+			{
+				return true;
+			}	
+		}
+		return false;
+	}
+	
 	//Checking if the path is valid
 	private Boolean PathIsValid(int index, Town t)
 	{
@@ -106,16 +133,15 @@ public class Country
 			//Checking if this is the first path
 			if(paths.size() > 1)
 			{
-			//Checking if the same path exist
+			//Checking if the same path exists
 			for(Path p : paths)
 			{
 				if(t == p.town2 && towns.get(index) == p.town1
-						&& t == p.town1 && towns.get(index) == p.town2)
+						|| t == p.town1 && towns.get(index) == p.town2)
 					return false;
 			}
-				return true;
-			}
-		
+			return true;
+			}	
 			return true;
 		}
 		return false;
