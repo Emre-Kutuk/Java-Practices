@@ -1,7 +1,0 @@
-package creditClick;
-
-public class Path 
-{
-	Town from;
-	Town to;
-}
