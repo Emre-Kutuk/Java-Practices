@@ -9,7 +9,7 @@ public class User
     protected String firstName;
     protected String lastName;
     protected LocalDate birthdate;
-    protected UserType type;
+    protected int type;
 
     public String getUsername()
         {
@@ -35,8 +35,7 @@ public class User
         {
         return birthdate;
         }
-
-    public UserType getType()
+    public int getType()
         {
         return type;
         }

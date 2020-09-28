@@ -1,2 +1,4 @@
 emma,emma12,Emma,Smith,1997-04-12,0,IT-02-A
+jack,jack12,Jack,Brown,1993-04-07,0,IT-02-A
+rick,rick12,Rick,Moore,2000-03-16,0,IT-02-A
 david,david12,David,Taylor,1965-06-15,1
