@@ -48,28 +48,31 @@ public class Main
     public void ShowStudentInterface() throws IOException
         {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("\nS. Display Students | T. Display Teachers | X. Exit \nPlease enter a choice: ");
-        String userInput = scanner.next();
-
-        if (userInput.equalsIgnoreCase("s"))
+        while (true)
             {
-            System.out.println("\nLIST OF STUDENTS" +
-                    "\n\nFirstName          LastName          Birthdate          Age          Group\n" +
-                        "*********          ********          *********          ***          *****\n");
-            for(Student s : GetAllStudents())
+            System.out.print("\nS. Display Students | T. Display Teachers | X. Exit \nPlease enter a choice: ");
+            String userInput = scanner.next();
+
+            if (userInput.equalsIgnoreCase("s"))
                 {
-                System.out.format("%s              %s               %s         %s          %s\n",
-                        s.getFirstName(),s.getLastName(),s.getBirthdate(), LocalDate.now().getYear() - s.getBirthdate().getYear(), s.getGroup());
+                System.out.println("\nLIST OF STUDENTS" +
+                        "\n\nFirstName          LastName          Birthdate          Age          Group\n" +
+                        "*********          ********          *********          ***          *****\n");
+                for (Student s : GetAllStudents())
+                    {
+                    System.out.format("%s              %s               %s         %s          %s\n",
+                            s.getFirstName(), s.getLastName(), s.getBirthdate(), LocalDate.now().getYear() - s.getBirthdate().getYear(), s.getGroup());
+                    }
+
+
+                } else if (userInput.equalsIgnoreCase("t"))
+                {
+                //DISPLAY TEACHERS
+                } else if (userInput.equalsIgnoreCase("x"))
+                {
+                System.out.println("\nExiting application...");
+                break;
                 }
-
-
-            } else if (userInput.equalsIgnoreCase("t"))
-            {
-            //DISPLAY TEACHERS
-            } else if (userInput.equalsIgnoreCase("x"))
-            {
-            //EXIT
             }
         }
 
