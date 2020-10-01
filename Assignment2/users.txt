@@ -1,4 +1,6 @@
-emma,emma12,Emma,Smith,1997-04-12,0,IT-02-A
-jack,jack12,Jack,Brown,1993-04-07,0,IT-02-A
-rick,rick12,Rick,Moore,2000-03-16,0,IT-02-A
-david,david12,David,Taylor,1965-06-15,1
+jack,jack12,Jack,Brown,1999-02-15,0,IT-02-B
+emma,emma12,Emma,Smith,1995-03-25,0,IT-02-B
+john,john12,John,Miler,2005-06-25,0,IT-02-B
+mark,mark12,Mark,Lopez,2008-02-21,0,IT-02-B
+david,david12,David,Smith,1954-02-01,1
+lisa,lisa12,Lisa,Johns,2003-03-15,0,IT-02-B
