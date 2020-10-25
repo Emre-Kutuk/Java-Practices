@@ -1,0 +1,51 @@
+.root {
+    -fx-background-color: #ffffff;
+}
+
+.label {
+    -fx-text-fill: #414141;
+}
+
+.button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #414141;
+    -fx-border-color: #393e46;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.button:hover {
+    -fx-background-color: #525252;
+    -fx-border-color: #393e46;
+    -fx-text-fill: #ffffff;
+}
+
+.table-view {
+    -fx-alignment: center;
+
+}
+
+#h1 {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+#h2 {
+    -fx-font-size: 17px;
+    -fx-font-weight: 600;
+    -fx-padding: 10px, 0px;
+}
+
+#panel {
+    -fx-background-color: #9ba4b4;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #ffffff;
+}
+
+#panel-context{
+    -fx-font-size: 13px;
+    -fx-padding: 5px;
+    -fx-font-weight: bold;
+}
