@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.*;
 import model.*;
+import nl.inholland.exam.WelcomeMessage_DAO;
 import service.Article_SERVICE;
 import service.Customer_SERVICE;
 import service.User_SERVICE;
@@ -46,6 +47,7 @@ public class Dashboard {
   User_SERVICE userService;
   Article_SERVICE articleService;
   Customer_SERVICE customerService;
+  WelcomeMessage_DAO message_db;
 
   public Dashboard(User user) {
     Stage dashboardStage = new Stage();
@@ -55,6 +57,8 @@ public class Dashboard {
     articleService = new Article_SERVICE();
     userService = new User_SERVICE();
     customerService = new Customer_SERVICE();
+    message_db = new WelcomeMessage_DAO();
+
     allArticles = articleService.GetAllArticles();
 
     this.dashboardStage = dashboardStage;

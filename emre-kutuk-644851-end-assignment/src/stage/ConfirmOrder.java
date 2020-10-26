@@ -62,8 +62,8 @@ public class ConfirmOrder extends Dashboard {
     for (Order o : dashboard.customerOrderPart.getUnfinishedOrders()) {
       articleService.ChangeArticleQuantity(o.getArticle(), o.getQuantity(), false);
     }
-    customerService.AddOneCustomer(dashboard.customerOrderPart);
 
+    customerService.AddOneCustomer(dashboard.customerOrderPart);
     confirmOrderStage.close();
     dashboard.ResetOrderView();
     new Notification("Order has been successfully added.", dashboard.dashboardStage);

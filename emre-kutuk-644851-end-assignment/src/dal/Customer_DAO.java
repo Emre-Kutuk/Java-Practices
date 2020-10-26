@@ -78,6 +78,12 @@ public class Customer_DAO {
 
         customers.add(customer);
         AddCustomers(customers);
+
+        break;
+      } else {
+        List<Customer> allCustomers = GetAllCustomers();
+        allCustomers.add(customer);
+        AddCustomers(allCustomers);
         break;
       }
     }

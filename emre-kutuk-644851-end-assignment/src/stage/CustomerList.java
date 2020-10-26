@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerList extends Dashboard {
-  private final Stage customerListStage;
-  private final TextField searchInput;
-  private final Dashboard dashboard;
+  private Stage customerListStage;
+  private TextField searchInput;
+  private Dashboard dashboard;
   private List<Customer> customersResult = new ArrayList<>();
   Customer_SERVICE customerService = new Customer_SERVICE();
 
@@ -31,9 +31,11 @@ public class CustomerList extends Dashboard {
     Label title = new Label("Customers List");
     title.setId("h1");
 
+    Button addCustomerButton = new Button("Add Customer");
+
     vBox.setPadding(new Insets(10));
     vBox.setSpacing(10);
-    vBox.getChildren().addAll(title, SetCustomersTable());
+    vBox.getChildren().addAll(title, SetCustomersTable(), addCustomerButton);
     Scene customerListScene = new Scene(vBox);
     customerListScene.getStylesheets().add("css/style.css");
 
@@ -46,9 +48,11 @@ public class CustomerList extends Dashboard {
     customerListStage.initOwner(dashboard.dashboardStage);
     customerListStage.initModality(Modality.WINDOW_MODAL);
 
+    addCustomerButton.setOnAction(e -> new AddCustomer(customerListStage,this));
+
     customerListStage.show();
   }
-
+  public CustomerList(){}
   private TableView SetCustomersTable() {
     TableView customersTable = new TableView();
 
@@ -118,5 +122,11 @@ public class CustomerList extends Dashboard {
             || c.getLastName().toLowerCase().contains(keyword)) customersResult.add(c);
       }
     } else customersResult = customerService.GetAllCustomers();
+  }
+
+  protected void SetCustomersTableAll()
+  {
+    customersResult = customerService.GetAllCustomers();
+    SetCustomersTable();
   }
 }

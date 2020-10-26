@@ -1,5 +1,6 @@
 package stage;
 
+import exception.AccountLockedException;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,6 +12,8 @@ import service.User_SERVICE;
 public class Login {
 
   private final Stage loginStage;
+  private int attemptCount = 3;
+  private String tempUserName;
 
   public Login() {
     Stage loginStage = new Stage();
@@ -55,10 +58,21 @@ public class Login {
 
     loginButton.setOnAction(
         e -> {
-          User user = ReturnUserIfExists(usernameInput.getText(), passwordInput.getText());
+          User user = null;
+          try
+          {
+            user = ReturnUserIfExists(usernameInput.getText(), passwordInput.getText());
+          } catch (AccountLockedException accountLockedException)
+          {
+            accountLockedException.printStackTrace();
+          }
 
           if (user == null) {
-            new Notification("Wrong username or password, please try again!", loginStage);
+            try {
+              TrackWrongAttempt(usernameInput.getText());
+            } catch (AccountLockedException accountLockedException) {
+
+            }
           } else {
             new Dashboard(user);
             loginStage.close();
@@ -68,7 +82,8 @@ public class Login {
     return gridPane;
   }
 
-  private User ReturnUserIfExists(String username, String password) {
+  private User ReturnUserIfExists(String username, String password) throws AccountLockedException
+  {
     User_SERVICE userService = new User_SERVICE();
 
     for (User u : userService.GetAllUsers()) {
@@ -77,5 +92,22 @@ public class Login {
       }
     }
     return null;
+  }
+
+  private void TrackWrongAttempt(String userName) throws AccountLockedException {
+
+    if (attemptCount > 1) {
+
+      if (tempUserName == null) tempUserName = userName;
+      else if (tempUserName.equals(userName)) {
+        attemptCount--;
+      } else {
+        tempUserName = userName;
+        attemptCount = 3;
+      }
+
+      new Notification(String.format("Wrong username or password, %s attempts left", attemptCount),loginStage);
+
+    } else throw new AccountLockedException();
   }
 }
